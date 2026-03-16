@@ -165,7 +165,6 @@
     </style>
     <script>
         (function () {
-            var pathSegmentsToKeep = 1;
             var routes = {
                 home: "",
                 generator: "password-generator",
@@ -176,6 +175,7 @@
             var knownRoutes = new Set(Object.values(routes));
             var locationInfo = window.location;
             var segments = locationInfo.pathname.split('/').filter(Boolean);
+            var pathSegmentsToKeep = segments.length > 0 && !knownRoutes.has(segments[0]) ? 1 : 0;
             var baseSegments = segments.slice(0, pathSegmentsToKeep);
             var routeSegments = segments.slice(pathSegmentsToKeep);
             var routePath = routeSegments.join('/');
